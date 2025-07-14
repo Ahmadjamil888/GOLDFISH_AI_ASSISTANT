@@ -54,28 +54,33 @@ The chatbot is trained on a comprehensive dataset containing prompt-response pai
 The dataset has been analyzed for various metrics including length distribution and word counts. Below are the visualization results:
 
 #### Prompt and Response Length Analysis
-![Prompt Length Distribution](data/plots/prompt_length_distribution.png)
+![Prompt Length Distribution](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/143940f8-898d-45e4-8dc0-9405be5d97b2" />
+)
 *Distribution of prompt lengths showing the variety in user inputs*
 
-![Response Length Distribution](data/plots/response_length_distribution.png)
+![Response Length Distribution](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/e4e74417-a440-48bc-9fdb-d47aada8b007" />
+)
 *Distribution of response lengths demonstrating output variability*
 
 #### Word Count Analysis
-![Prompt Word Count](data/plots/prompt_word_count_distribution.png)
+![Prompt Word Count](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/c3777ae6-5c5d-48cb-815f-ca139a20ae4b" />
+)
 *Word count distribution in user prompts*
 
-![Response Word Count](data/plots/response_word_count_distribution.png)
+![Response Word Count](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/9e5d111a-2f28-4b3e-8072-61d10082e54c" />
+)
 *Word count distribution in system responses*
 
 #### Correlation Analysis
-![Length Correlation](data/plots/prompt_vs_response_length.png)
+![Length Correlation](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/be764663-f3bf-415b-b4db-073dd29aa02a" />
+)
 *Correlation between prompt and response lengths*
 
 ## Installation
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Ahmadjamil888/GOLDFISH_AI_ASSISTANT.git
    cd my-smart-ai-chatbot
    ```
 
