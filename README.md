@@ -54,27 +54,20 @@ The chatbot is trained on a comprehensive dataset containing prompt-response pai
 The dataset has been analyzed for various metrics including length distribution and word counts. Below are the visualization results:
 
 #### Prompt and Response Length Analysis
-![Prompt Length Distribution](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/143940f8-898d-45e4-8dc0-9405be5d97b2" />
-)
-*Distribution of prompt lengths showing the variety in user inputs*
 
-![Response Length Distribution](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/e4e74417-a440-48bc-9fdb-d47aada8b007" />
-)
-*Distribution of response lengths demonstrating output variability*
+
+<img src="https://raw.githubusercontent.com/Ahmadjamil888/GOLDFISH_AI_ASSISTANT/refs/heads/main/prompt_length_distribution.png">
+
+<img src="https://raw.githubusercontent.com/Ahmadjamil888/GOLDFISH_AI_ASSISTANT/refs/heads/main/prompt_vs_response_length.png">
+
 
 #### Word Count Analysis
-![Prompt Word Count](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/c3777ae6-5c5d-48cb-815f-ca139a20ae4b" />
-)
-*Word count distribution in user prompts*
+<img src="https://raw.githubusercontent.com/Ahmadjamil888/GOLDFISH_AI_ASSISTANT/refs/heads/main/prompt_word_count_distribution.png">
 
-![Response Word Count](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/9e5d111a-2f28-4b3e-8072-61d10082e54c" />
-)
-*Word count distribution in system responses*
 
+<img src="https://raw.githubusercontent.com/Ahmadjamil888/GOLDFISH_AI_ASSISTANT/refs/heads/main/response_length_distribution.png">
 #### Correlation Analysis
-![Length Correlation](<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/be764663-f3bf-415b-b4db-073dd29aa02a" />
-)
-*Correlation between prompt and response lengths*
+<img src="https://raw.githubusercontent.com/Ahmadjamil888/GOLDFISH_AI_ASSISTANT/refs/heads/main/response_word_count_distribution.png">
 
 ## Installation
 
