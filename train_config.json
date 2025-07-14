@@ -1,0 +1,27 @@
+{
+  "model": {
+    "embedding_dim": 128,
+    "hidden_dim": 256,
+    "vocab_size": 10000,
+    "max_seq_len": 20
+  },
+  "training": {
+    "batch_size": 32,
+    "epochs": 10,
+    "learning_rate": 0.001,
+    "save_every": 1,
+    "shuffle": true
+  },
+  "paths": {
+    "tokenized_prompts": "data/tokenized_prompts.pkl",
+    "tokenized_responses": "data/tokenized_responses.pkl",
+    "vocab": "data/vocab.txt",
+    "save_weights": "model/model_weights.pth"
+  },
+  "special_tokens": {
+    "pad_token": "<PAD>",
+    "bos_token": "<BOS>",
+    "eos_token": "<EOS>",
+    "unk_token": "<UNK>"
+  }
+}

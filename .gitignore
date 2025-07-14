@@ -1,0 +1,61 @@
+# Data files
+data/*.csv
+data/*.pkl
+data/*.npz
+data/*.pth
+data/*.txt
+data/plots/
+
+# Virtual environment
+venv/
+env/
+.env/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+log/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Model checkpoints and weights
+*.ckpt
+model/*.npz
+model/*.pth
+model/weights/ 

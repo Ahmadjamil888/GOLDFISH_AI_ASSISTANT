@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            content: ["./src/**/*.{html,js}"],
+            theme: {
+                name: "Bluewave",
+                fontFamily: {
+                    sans: ["Open Sans", "ui-sans-serif", "system-ui", "sans-serif", '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
+                },
+                extend: {
+                    fontFamily: {
+                        title: ["Lato", "ui-sans-serif", "system-ui", "sans-serif", '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
+                        body: ["Open Sans", "ui-sans-serif", "system-ui", "sans-serif", '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"']
+                    },
+                    colors: {
+                        neutral: {
+                            50: "#f7f7f7", 100: "#eeeeee", 200: "#e0e0e0", 300: "#cacaca",
+                            400: "#b1b1b1", 500: "#999999", 600: "#7f7f7f", 700: "#676767",
+                            800: "#545454", 900: "#464646", 950: "#282828"
+                        },
+                        primary: {
+                            50: "#f3f1ff", 100: "#e9e5ff", 200: "#d5cfff", 300: "#b7a9ff",
+                            400: "#9478ff", 500: "#7341ff", 600: "#631bff", 700: "#611bf8",
+                            800: "#4607d0", 900: "#3c08aa", 950: "#220174", DEFAULT: "#611bf8"
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-neutral-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white border-r border-neutral-200">
+            <div class="p-4">
+                <button id="new-chat" class="w-full bg-primary-600 text-white rounded py-2 px-4 hover:bg-primary-700 transition-colors font-title">
+                    New Chat
+                </button>
+            </div>
+            <div class="overflow-y-auto h-[calc(100vh-80px)]" id="chat-history">
+                <!-- Chat history will be populated here -->
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="flex-1 flex flex-col">
+            <!-- Chat Messages -->
+            <div class="flex-1 overflow-y-auto p-4" id="chat-messages">
+                <!-- Messages will be displayed here -->
+            </div>
+
+            <!-- Input Area -->
+            <div class="border-t border-neutral-200 p-4 bg-white">
+                <form id="chat-form" class="flex gap-4">
+                    <input type="text" id="user-input" class="flex-1 border border-neutral-300 rounded px-4 py-2 focus:outline-none focus:border-primary-500" placeholder="Type your message...">
+                    <button type="submit" class="bg-primary-600 text-white rounded px-6 py-2 hover:bg-primary-700 transition-colors font-title">
+                        Send
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let chatHistory = [];
+        const chatHistoryDiv = document.getElementById('chat-history');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+
+        // Function to create a new chat
+        document.getElementById('new-chat').addEventListener('click', () => {
+            chatMessages.innerHTML = '';
+            userInput.value = '';
+            addChatToHistory('New Chat ' + (chatHistory.length + 1));
+        });
+
+        // Function to add message to chat
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`;
+            messageDiv.innerHTML = `
+                <div class="${isUser ? 'bg-primary-600 text-white' : 'bg-neutral-100 text-neutral-900'} rounded-lg px-4 py-2 max-w-[70%]">
+                    <p class="font-body">${message}</p>
+                </div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to add chat to history
+        function addChatToHistory(title) {
+            const chatId = Date.now();
+            chatHistory.push({ id: chatId, title });
+            updateChatHistory();
+        }
+
+        // Function to update chat history sidebar
+        function updateChatHistory() {
+            chatHistoryDiv.innerHTML = chatHistory.map(chat => `
+                <div class="flex justify-between items-center p-3 hover:bg-neutral-100 cursor-pointer group">
+                    <span class="font-body truncate">${chat.title}</span>
+                    <button onclick="deleteChat(${chat.id})" class="text-neutral-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                        ×
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Function to delete chat
+        function deleteChat(chatId) {
+            chatHistory = chatHistory.filter(chat => chat.id !== chatId);
+            updateChatHistory();
+        }
+
+        // Handle form submission
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, true);
+            userInput.value = '';
+
+            try {
+                // Send message to backend
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                
+                // Add AI response
+                addMessage(data.response);
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, there was an error processing your request.');
+            }
+        });
+
+        // Initialize with a new chat
+        addChatToHistory('New Chat');
+    </script>
+</body>
+</html>
